@@ -4,3 +4,7 @@ and analyze them using AI. The system visualizes emotions, keywords, and pattern
 This repository is created for a university project.
 
 
+# Workshop 3 – Iteration 1:
+- Project board created
+- User stories added to Todo
+- Planning started
