@@ -1,3 +1,7 @@
+# diary_app.py
+# Dream Notebook - Iteration 1
+# Basic diary entry system (no AI, no database)
+
 from datetime import datetime
 
 def create_entry():
@@ -18,6 +22,7 @@ def create_entry():
 def view_entries():
     """Display saved diary entries"""
     print("\n--- View Saved Entries ---")
+
     try:
         with open("entries.txt", "r") as file:
             print(file.read())
@@ -33,7 +38,7 @@ def main_menu():
         print("2. View Entries")
         print("3. Exit")
 
-        choice = input("Choose an option: ")
+        choice = input("Choose an option (1-3): ")
 
         if choice == "1":
             create_entry()
