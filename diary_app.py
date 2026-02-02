@@ -18,7 +18,6 @@ def create_entry():
 def view_entries():
     """Display saved diary entries"""
     print("\n--- View Saved Entries ---")
-
     try:
         with open("entries.txt", "r") as file:
             print(file.read())
