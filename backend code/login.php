@@ -1,34 +1,35 @@
 <?php
 include 'db_connect.php';
 
-if (!isset($_SESSION['user_id'])) {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die("Unauthorized");
 }
 
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    die("Invalid request");
+$login    = $_POST['login'] ?? '';
+$password = $_POST['password'] ?? '';
+
+if ($login === '' || $password === '') {
+    die("Unauthorized");
 }
 
-echo "Backend running (Create Entry)<br>";
-print_r($_POST);
-
-if (empty($_POST['title']) || empty($_POST['content'])) {
-    die("Entry cannot be empty");
-}
-
-$title = $_POST['title'];
-$content = $_POST['content'];
-$user_id = $_SESSION['user_id'];
-
-$sql = "INSERT INTO diary_entries (user_id, title, content)
-        VALUES (?, ?, ?)";
+$sql = "SELECT * FROM users WHERE email = ? OR username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iss", $user_id, $title, $content);
+$stmt->bind_param("ss", $login, $login);
+$stmt->execute();
 
-if ($stmt->execute()) {
-    echo "<br>Entry saved successfully";
-    // header("Location: view_diary.php");
-} else {
-    echo "<br>Failed to save entry";
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+if (!$user) {
+    die("Unauthorized");
 }
-?>
+
+if (!password_verify($password, $user['password_hash'])) {
+    die("Unauthorized");
+}
+
+$_SESSION['user_id'] = $user['id'];
+$_SESSION['username'] = $user['username'];
+
+header("Location: view_entries.php");
+exit;
