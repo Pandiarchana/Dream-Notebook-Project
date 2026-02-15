@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+
+  <div class="container">
+    <div class="login-box">
+      <h2><a href="Homepage.html">Dream Diary</a></h2>
+      <h1>LOGIN</h1>
+
+      <button class="google-btn">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google">
+        Continue with Google
+      </button>
+
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <form>
+        <label>Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your Email">
+
+        <label>Password</label>
+        <input type="password" name="pwd" id="pwd" placeholder="Enter your Password">
+
+
+        <button class="login-btn" onclick="return validate()">Login</button>
+
+      </form>
+
+      <p class="signup">
+        Don’t have an account? <a href="register.html">Sign up</a>
+      </p>
+    </div>
+  </div>
+
+<script type="text/javascript">
+    function validate(){
+
+      var email = document.getElementById("email").value
+      if(email == ""){
+        alert("Please Enter email ")
+        return false
+      }
+      var password = document.getElementById("pwd").value
+      if(password==""){
+        alert("Please Enter password")
+        return false
+      }
+      var email = document.getElementById("email").value
+      var pattern = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/
+      if(!pattern.test(email)){
+        alert("Enter valid email:")
+        return false
+      }
+    }
+  </script>
+
+
+
+
+
+
+</body>
+</html>
