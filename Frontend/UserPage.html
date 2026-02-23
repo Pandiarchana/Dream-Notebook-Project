@@ -189,6 +189,95 @@ footer a:hover {
   margin-right: 4px;
 }
 
+
+.entry-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .entry-card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 70%;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .entry-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .entry-header {
+      background: #f7f7f7;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .entry-header h2 {
+      color: #5a67d8;
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .entry-body {
+      display: flex;
+      padding: 15px;
+      gap: 20px;
+    }
+
+
+    .entry-details {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5px 0;
+    }
+
+    .entry-details p {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .entry-details h3 {
+      color: #7588a7;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+    }
+
+    .btn-group button {
+      background: #5a67d8;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn-group button:hover {
+      background: #434aa8;
+    }
+
+
   </style>
 </head>
 <body>
@@ -248,7 +337,42 @@ footer a:hover {
 
     <div class="entries">
       <h2>Your Entries</h2>
-      <div id="entriesList"></div>
+      <div id="entriesList">
+
+        <?php
+$query ="SELECT * FROM dream_notebook_dream_entry";
+$result = mysqli_query($connect,$query);
+
+while ($record = mysqli_fetch_array($result)) {
+
+    print("<form action='Delete.php' method='POST' class='entry-card'>");
+
+    print("<div class='entry-header'>");
+    print("<h2>$record[title]</h2>");
+    print("</div>");
+
+
+    print("<div class='entry-body'>");
+    print("<div class='entry-details'>");
+    print("<h3>Date - $record[dream_date]</h3>");
+    print("<h3>Time - $record[dream_time]</h3>");
+    print("<p>$record[DiaryDec]</p>");
+
+    print("<div class='btn-group'>");
+    print("<button type='submit' name='del' value='$record[eid]'
+            onclick='return confirm(\"Do you want to delete?\")'>Delete</button>");
+    print("<button type='submit' name='update' value='$record[dream_id]'>Update</button>");
+    print("</div>");
+    print("</div>");
+
+    print("</div>");
+
+    print("</form>");
+}
+?>
+</div>
+
+      </div>
     </div>
 
   </section>
