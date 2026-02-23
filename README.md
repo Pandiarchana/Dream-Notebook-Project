@@ -36,3 +36,29 @@ from this iteration.
 ### Current Focus
 Iteration 1 focuses on core diary functionality and clean project integration.
 AI-based analysis, databases, and data visualisation features are planned for later iterations.
+
+
+## Practical 5: Iteration 1 – Week 3 (Execution & Tracking)
+
+### A) SRP & DRY Review (Code Quality)
+
+**Files checked:** db_connect.php, register.php, login.php, logout.php, create_entry.php, view_entries.php
+
+#### SRP (Single Responsibility Principle) findings
+- db_connect.php: ✅ Single responsibility (DB connection + session_start)
+- register.php: Validation + hashing + DB insert + debug output in one file → Plan: remove debug output, keep register logic only
+- login.php: Validation + DB + session + output in one file → Plan: move reusable session check to a common file
+- create_entry.php: Authorization + insert query + output in one file → Plan: move authorization to reusable file
+- view_entries.php: DB query + UI output in one file → Plan: separate/reuse query logic later
+- logout.php: ✅ Single responsibility (logout only)
+
+#### DRY (Don’t Repeat Yourself) findings
+- ✅ DRY improvement done: Reused DB connection using `include 'db_connect.php'` across files
+- Repeated session check (Unauthorized) in protected pages → Plan: create `auth_check.php` and include it
+- Repeated POST request check in multiple files → Plan: reuse helper/function
+- Repeated validation patterns → Plan: reusable `validation.php`
+
+### B) Tracking (GitHub)
+- Project board used: Todo | In Progress | Done
+- Labels used on tasks: todo, in-progress, done
+- Cards/tasks were moved across columns to show progress
