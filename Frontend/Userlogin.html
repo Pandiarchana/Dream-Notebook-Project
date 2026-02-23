@@ -25,8 +25,8 @@
       </div>
 
       <form>
-        <label>Email</label>
-        <input type="email" name="email" id="email" placeholder="Enter your Email">
+        <label>Username</label>
+        <input type="uname" name="uname" id="uname" placeholder="Enter your Username">
 
         <label>Password</label>
         <input type="password" name="pwd" id="pwd" placeholder="Enter your Password">
@@ -45,9 +45,9 @@
 <script type="text/javascript">
     function validate(){
 
-      var email = document.getElementById("email").value
-      if(email == ""){
-        alert("Please Enter email ")
+      var uname = document.getElementById("uname").value
+      if(uname == ""){
+        alert("Please Enter Username ")
         return false
       }
       var password = document.getElementById("pwd").value
