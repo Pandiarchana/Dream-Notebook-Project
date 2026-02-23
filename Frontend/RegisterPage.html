@@ -26,9 +26,11 @@
         <label>Email</label>
         <input type="email" name="email" id="email" placeholder="Enter your email">
 
+        <label>Username</label>
+        <input type="uname" name="unmae" id="uname" placeholder="Create a Username">
+
         <label>Password</label>
         <input type="password" name="pwd" id="pwd" placeholder="Create a password">
-
 
         <button class="login-btn" onclick="return validate()">Signup</button>
 
@@ -46,6 +48,11 @@
       var email = document.getElementById("email").value
       if(email == ""){
         alert("Please Enter email ")
+        return false
+      }
+      var uname = document.getElementById("uname").value
+      if(uname == ""){
+        alert("Please Enter Username ")
         return false
       }
       var password = document.getElementById("pwd").value
