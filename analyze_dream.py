@@ -1,44 +1,56 @@
 import sys
+import os
 import mysql.connector
 import google.generativeai as genai
+from dotenv import load_dotenv
 
-# 1. Setup Gemini (Use your key from Google AI Studio)
-genai.configure(api_key="AIzaSyC6IM-OVI5UVngHYcxDxjje1IS2OARl6kE")
+# 1. Load configuration from .env file
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
+db_pass = os.getenv("DB_PASS")
+
+# 2. Setup Gemini AI
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 
 def run_analysis():
-    # Get the dream text passed from PHP
+    # Check if PHP sent the dream data (dream_id and dream_text)
     if len(sys.argv) < 3:
+        print("Error: Missing arguments from PHP.")
         return
 
     dream_id = sys.argv[1]
     dream_text = sys.argv[2]
 
     try:
-        # 2. Ask Gemini for the emotion
-        prompt = f"Analyze the emotion of this dream in one word (e.g., Happy, Sad, Anxious, Fearful): {dream_text}"
+        # 3. Ask Gemini to identify the emotion
+        prompt = f"Analyze this dream and return ONLY a one-word emotion (e.g., Happy, Anxious, Fearful, Calm): {dream_text}"
         response = model.generate_content(prompt)
         emotion = response.text.strip()
 
-        # 3. Connect to your MySQL Workbench
+        # 4. Connect to MySQL and save the emotion
         db = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Archana@27",
+            password=db_pass,
             database="dream_notebook"
         )
+
         cursor = db.cursor()
 
-        # 4. Insert the emotion into your 'categories' table
+        # Insert into categories table (matches your Workbench structure)
         query = "INSERT INTO categories (entry_id, category_name) VALUES (%s, %s)"
         cursor.execute(query, (dream_id, emotion))
 
         db.commit()
-        print(f"Success: Detected {emotion}")
+        cursor.close()
+        db.close()
+
+        print(f"Success: Analysis saved as {emotion}")
 
     except Exception as e:
-        print(f"Error: {str(e)}")
+        print(f"Error occurred: {e}")
 
 
 if __name__ == "__main__":
