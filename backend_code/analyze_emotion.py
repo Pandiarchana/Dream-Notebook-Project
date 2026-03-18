@@ -3,7 +3,6 @@ import json
 from textblob import TextBlob
 
 text = sys.argv[1]
-
 blob = TextBlob(text)
 
 sentences = blob.sentences
