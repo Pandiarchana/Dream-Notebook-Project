@@ -1,25 +1,28 @@
 <?php
-// Database configuration for MySQL Workbench
+/**
+ * Database Connection for Dream-Notebook-Project
+ * This file connects your PHP frontend to the XAMPP MySQL/MariaDB database.
+ */
+
+// 1. Database Configuration
+// If you are using XAMPP, the default user is 'root' and password is empty ''
 $host = "localhost";
-$port = "3306"; // Default port for MySQL Workbench
-$user = "root";
-$pass = "Archana@27";
-$db   = "dream_notebook";
+$db_user = "root";
+$db_pass = ""; // Leave empty for XAMPP default
+$db_name = "dream_notebook";
+$port = 3306; // Use 3307 if you changed your XAMPP port earlier
 
-// Enable error reporting for debugging
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+// 2. Create Connection
+$conn = new mysqli($host, $db_user, $db_pass, $db_name, $port);
 
-try {
-    // Create connection
-    $conn = new mysqli($host, $user, $pass, $db, $port);
-
-    // Set charset to utf8mb4 (good for dreams/emojis)
-    $conn->set_charset("utf8mb4");
-
-} catch (mysqli_sql_exception $e) {
-    // If connection fails, show the specific error
-    die("Database connection failed: " . $e->getMessage());
+// 3. Check Connection
+if ($conn->connect_error) {
+    // If connection fails, stop and show the error
+    die("Database Connection Failed: " . $conn->connect_error);
 }
 
-// Success! If the code reaches here, your DB is connected.
+// 4. Set Character Set to UTF-8 (important for dream text with emojis)
+$conn->set_charset("utf8mb4");
+
+// Note: We do not close the connection here so other files can use $conn
 ?>
