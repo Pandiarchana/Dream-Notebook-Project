@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>My Dream Diary</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#f7f9fc;
+color:#333;
+}
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+nav h2{
+color:#5a67d8;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+nav a:hover {
+color: #fff;
+background-color: #5a67d8;
+
+}
+
+nav a{
+text-decoration:none;
+color:#444;
+font-weight:500;
+padding: 10px 18px;
+border-radius: 8px;
+}
+
+nav button{
+background:#5a67d8;
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.hero{
+text-align:center;
+padding:100px 20px;
+background:linear-gradient(135deg,#eef2ff,#f7f9fc);
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+color:#666;
+margin-bottom:30px;
+}
+
+.hero button{
+padding:15px 35px;
+background:#5a67d8;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+/*features*/
+.features{
+padding:80px 60px;
+display:flex;
+gap:40px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.feature-card{
+background:white;
+padding:30px;
+width:300px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+text-align:center;
+transition:0.3s;
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+}
+
+.feature-card h3{
+margin-bottom:15px;
+color:#5a67d8;
+}
+
+.feature-card p{
+color:#666;
+}
+
+.testimonials{
+padding:80px 20px;
+background:white;
+text-align:center;
+}
+
+.testimonials h2{
+margin-bottom:40px;
+}
+
+.quote{
+max-width:600px;
+margin:auto;
+font-style:italic;
+color:#555;
+}
+
+/*footer*/
+footer{
+background:#1a202c;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:60px;
+}
+
+
+
+
+
+/*contact*/
+.contact-form {
+  background: #5a67d8;
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: 80px auto;
+  border-radius: 30px;
+  text-align: center;
+}
+
+.contact-form .row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.field {
+  width: 100%;
+  text-align: left;
+}
+
+/* input*/
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,0.8);
+  padding: 12px 5px;
+  font-size: 16px;
+  color: white;
+  outline: none;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* placeholder */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255,255,255,0.9);
+}
+
+
+/* send button */
+.contact-form button {
+  margin-top: 30px;
+  padding: 12px 50px;
+  border-radius: 30px;
+  border: none;
+  background: #fff;
+  color: #5a67d8;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #fff;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+<!--nav-->
+<nav>
+<h2>Dream Diary</h2>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Features</a></li>
+<li><a href="#">Support</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<button><a style="color: #fff;" href="login.html">Sign In</a></button>
+</nav>
+
+
+<section class="hero">
+<h1>Simple. Effective. Personal.</h1>
+<p>Capture your thoughts, memories, and ideas in one beautiful place.</p>
+<button>Get Started</button>
+</section>
+
+<!--feature-->
+<section class="features">
+
+<div class="feature-card">
+<h3>Write</h3>
+<p>Create daily journal entries with ease and simplicity.</p>
+</div>
+
+<div class="feature-card">
+<h3>Edit</h3>
+<p>Edit Your Entries however you like.</p>
+</div>
+
+<div class="feature-card">
+<h3>Access</h3>
+<p>Access your journal anywhere across all devices.</p>
+</div>
+
+</section>
+
+
+<section class="testimonials">
+<h2>What People Say</h2>
+<p class="quote">
+"This journal app helped me stay organized and reflect daily. I love how simple it is!"
+</p>
+</section>
+
+
+<section id="contact">
+<h2>Contact Us Here!</h2>
+
+<form class="contact-form" id="contactForm">
+
+  <div class="row">
+    <div class="field">
+      <input type="text" id="name" placeholder="Your Name">
+
+    </div>
+
+    <div class="field">
+      <input type="email" id="email" placeholder="Your Email">
+
+    </div>
+  </div>
+
+  <div class="field">
+    <textarea id="message" placeholder="Your Message"></textarea>
+
+  </div>
+
+  <button type="submit">SEND</button>
+</form>
+</section>
+
+<footer>
+<p>© 2026 DreamDiary. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
