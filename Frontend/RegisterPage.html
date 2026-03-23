@@ -22,18 +22,17 @@
         <span>OR</span>
       </div>
 
-      <form>
-        <label>Email</label>
-        <input type="email" name="email" id="email" placeholder="Enter your email">
+      <form action="../backend_code/register.php" method="POST">
+          <label>Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email">
 
-        <label>Username</label>
-        <input type="uname" name="unmae" id="uname" placeholder="Create a Username">
+          <label>Username</label>
+          <input type="text" name="username" id="uname" placeholder="Create a Username">
 
-        <label>Password</label>
-        <input type="password" name="pwd" id="pwd" placeholder="Create a password">
+          <label>Password</label>
+          <input type="password" name="password" id="pwd" placeholder="Create a password">
 
-        <button class="login-btn" onclick="return validate()">Signup</button>
-
+          <button type="submit" class="login-btn" onclick="return validate()">Signup</button>
       </form>
 
       <p class="signup">
@@ -60,7 +59,6 @@
         alert("Please Enter password")
         return false
       }
-      var email = document.getElementById("email").value
       var pattern = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/
       if(!pattern.test(email)){
         alert("Enter valid email:")

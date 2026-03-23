@@ -25,7 +25,7 @@ if (!$user) {
     die("Unauthorized");
 }
 
-if (!password_verify($password, $user['password_hash'])) {
+if (!password_verify($password, $user['password'])) {
     die("Unauthorized");
 }
 
