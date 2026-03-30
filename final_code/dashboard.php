@@ -102,7 +102,7 @@ $total = $stmt2->get_result()->fetch_assoc()['total'];
     <div class="avatar"><?= strtoupper(substr($username,0,1)) ?></div>
     <span><?= htmlspecialchars($username) ?></span>
   </div>
-  <a href="write_entry.html" class="add-task">+ New Entry</a>
+  <a href="write_entry.php" class="add-task">+ New Entry</a>
   <nav class="menu">
     <a href="dashboard.php" class="active">🏠 Dashboard</a>
     <a href="write_entry.php">✍️ Write Entry</a>
@@ -140,7 +140,7 @@ $total = $stmt2->get_result()->fetch_assoc()['total'];
 
   <!-- Quick Actions -->
   <div class="quick">
-    <a href="write_entry.html" class="quick-card">
+    <a href="write_entry.php" class="quick-card">
       <div class="quick-icon">✍️</div>
       <div>
         <h3>Write New Entry</h3>
@@ -163,7 +163,7 @@ $total = $stmt2->get_result()->fetch_assoc()['total'];
   <div class="no-entries">
     <i class="fa-solid fa-moon"></i>
     <p>No entries yet. Start writing your first dream!</p>
-    <a href="write_entry.html" style="color:var(--blue);font-weight:600;">Write now →</a>
+    <a href="write_entry.php" style="color:var(--blue);font-weight:600;">Write now →</a>
   </div>
   <?php else: ?>
   <?php while ($row = $recent->fetch_assoc()): ?>

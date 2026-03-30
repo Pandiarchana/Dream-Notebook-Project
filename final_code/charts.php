@@ -165,7 +165,7 @@ $top_keywords = array_slice($freq, 0, 8, true);
     <div class="avatar"><?= strtoupper(substr($username,0,1)) ?></div>
     <span><?= htmlspecialchars($username) ?></span>
   </div>
-  <a href="write_entry.html" class="add-task">+ New Entry</a>
+  <a href="write_entry.php" class="add-task">+ New Entry</a>
   <nav class="menu">
     <a href="dashboard.php">🏠 Dashboard</a>
     <a href="write_entry.php">✍️ Write Entry</a>
@@ -174,7 +174,7 @@ $top_keywords = array_slice($freq, 0, 8, true);
     <a href="help.php">❓ Help</a>
   </nav>
   <footer>
-    <a href="../backend/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
   </footer>
 </aside>
 
