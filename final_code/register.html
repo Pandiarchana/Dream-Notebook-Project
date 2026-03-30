@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sign up – DreamDiary</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<div class="login-box">
+<h2><a href="Homepage.html">Dream Diary</a></h2>
+<h1>Sign up</h1>
+
+<form action="register.php" method="POST" onsubmit="return validate()">
+
+<label>Email</label>
+<input type="email" name="email" id="email" placeholder="Enter your email">
+
+<label>Username</label>
+<input type="text" name="username" id="username" placeholder="Create a Username">
+
+<label>Password</label>
+<input type="password" name="password" id="password" placeholder="Create a password">
+
+<button type="submit" class="login-btn">Signup</button>
+
+</form>
+
+<p class="signup">
+Already have an account? <a href="login.html">Log in</a>
+</p>
+
+</div>
+</div>
+
+<script>
+function validate(){
+
+var email = document.getElementById("email").value;
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+
+if(email == ""){
+alert("Please enter email");
+return false;
+}
+
+if(username == ""){
+alert("Please enter username");
+return false;
+}
+
+if(password == ""){
+alert("Please enter password");
+return false;
+}
+
+return true;
+}
+</script>
+
+</body>
+</html>

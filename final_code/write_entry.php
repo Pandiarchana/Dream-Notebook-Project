@@ -1,0 +1,156 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.html");
+    exit();
+}
+
+$username = $_SESSION['username'] ?? 'User';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write Entry – Dream Notebook</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --blue:#5a67d8;--blue-dk:#434aa8;--blue-lt:#e0e4ff;
+      --bg:#f0f2f8;--white:#fff;--text:#1a1a2e;--muted:#6b7280;--border:#e5e7eb;
+    }
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;display:flex;min-height:100vh;}
+
+    /* Sidebar */
+    .sidebar{width:220px;background:var(--white);border-right:1px solid var(--border);padding:20px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;}
+    .user{display:flex;align-items:center;gap:10px;font-weight:600;margin-bottom:30px;}
+    .avatar{width:40px;height:40px;background:var(--blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+    .add-task{background:var(--blue);color:#fff;border:none;padding:10px;border-radius:6px;cursor:pointer;margin-bottom:20px;font-size:14px;font-family:'DM Sans',sans-serif;text-decoration:none;display:block;text-align:center;}
+    .add-task:hover{background:var(--blue-dk);}
+    .menu a{display:block;padding:10px;border-radius:6px;text-decoration:none;color:var(--text);margin-bottom:6px;font-size:14px;transition:background .2s;}
+    .menu a:hover{background:var(--blue-lt);}
+    .menu a.active{background:var(--blue-lt);color:var(--blue);font-weight:600;}
+    .sidebar footer{margin-top:auto;font-size:13px;}
+    .sidebar footer a{display:block;margin-top:10px;color:var(--muted);text-decoration:none;}
+
+    /* Main */
+    .main{flex:1;padding:40px;overflow-y:auto;max-width:760px;}
+    .page-header{margin-bottom:32px;}
+    .page-header h1{font-family:'Fraunces',serif;font-size:32px;font-weight:900;margin-bottom:4px;}
+    .page-header p{color:var(--muted);font-size:14px;}
+
+    /* Form */
+    .form-card{background:var(--white);border-radius:16px;padding:32px;border:1px solid var(--border);animation:fadeUp .5s ease both;}
+    .input-group{margin-bottom:22px;}
+    .input-group label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--text);}
+    .input-group input,
+    .input-group textarea,
+    .input-group select{
+      width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid var(--border);
+      font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);
+      background:var(--bg);transition:border .2s;resize:vertical;
+    }
+    .input-group input:focus,
+    .input-group textarea:focus,
+    .input-group select:focus{outline:none;border-color:var(--blue);background:var(--white);}
+    .input-group textarea{min-height:180px;line-height:1.7;}
+
+    .char-count{font-size:11px;color:var(--muted);text-align:right;margin-top:4px;}
+
+    .mood-row{display:flex;gap:10px;flex-wrap:wrap;}
+    .mood-btn{padding:8px 16px;border-radius:99px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;font-size:13px;transition:all .2s;}
+    .mood-btn:hover,.mood-btn.selected{border-color:var(--blue);background:var(--blue-lt);color:var(--blue);}
+
+    .save-btn{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;transition:background .2s;width:100%;}
+    .save-btn:hover{background:var(--blue-dk);}
+
+    .success-msg{display:none;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:12px 16px;color:#16a34a;font-size:13px;margin-bottom:16px;text-align:center;}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="user">
+    <div class="avatar"><?= strtoupper(substr($username,0,1)) ?></div>
+    <span><?= htmlspecialchars($username) ?></span>
+  </div>
+  <a href="write_entry.php" class="add-task">+ New Entry</a>
+  <nav class="menu">
+    <a href="dashboard.php">🏠 Dashboard</a>
+    <a href="write_entry.php" class="active">✍️ Write Entry</a>
+    <a href="history.php">📖 History</a>
+    <a href="charts.php">📊 Charts</a>
+    <a href="help.php">❓ Help</a>
+  </nav>
+  <footer>
+    <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+  </footer>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <h1>Write New Entry ✍️</h1>
+    <p>Record your dream or diary entry for today</p>
+  </div>
+
+  <div class="form-card">
+    <div class="success-msg" id="successMsg">✅ Entry saved successfully!</div>
+
+    <form action="save_entry.php" method="POST" onsubmit="return validate()">
+
+      <div class="input-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Give your entry a title..." required>
+      </div>
+
+      <div class="input-group">
+        <label for="content">Your Dream or Diary Entry</label>
+        <textarea name="content" id="content" placeholder="Describe your dream or write your diary entry here..." oninput="updateCount()" required></textarea>
+        <div class="char-count"><span id="charCount">0</span> characters</div>
+      </div>
+
+      <div class="input-group">
+        <label>Mood (optional)</label>
+        <div class="mood-row">
+          <button type="button" class="mood-btn" onclick="selectMood(this, 'happy')">😊 Happy</button>
+          <button type="button" class="mood-btn" onclick="selectMood(this, 'sad')">😢 Sad</button>
+          <button type="button" class="mood-btn" onclick="selectMood(this, 'scared')">😨 Scared</button>
+          <button type="button" class="mood-btn" onclick="selectMood(this, 'calm')">😌 Calm</button>
+          <button type="button" class="mood-btn" onclick="selectMood(this, 'excited')">🤩 Excited</button>
+          <button type="button" class="mood-btn" onclick="selectMood(this, 'strange')">😵 Strange</button>
+        </div>
+        <input type="hidden" name="mood" id="moodInput" value="">
+      </div>
+
+      <button type="submit" class="save-btn">💾 Save Entry</button>
+    </form>
+  </div>
+</main>
+
+<script>
+  function updateCount() {
+    document.getElementById('charCount').textContent =
+      document.getElementById('content').value.length;
+  }
+
+  function selectMood(btn, mood) {
+    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('moodInput').value = mood;
+  }
+
+  function validate() {
+    var title = document.getElementById('title').value;
+    if (title === '') { alert('Please enter a title'); return false; }
+    var content = document.getElementById('content').value;
+    if (content === '') { alert('Please write your entry'); return false; }
+    return true;
+  }
+</script>
+</body>
+</html>
