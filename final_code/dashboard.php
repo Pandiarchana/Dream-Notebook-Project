@@ -108,6 +108,7 @@ $total = $stmt2->get_result()->fetch_assoc()['total'];
     <a href="write_entry.php">✍️ Write Entry</a>
     <a href="history.php">📖 History</a>
     <a href="charts.php">📊 Charts</a>
+    <a href="export.php">💾 Export & Backup</a>
     <a href="help.php">❓ Help</a>
   </nav>
   <footer>
