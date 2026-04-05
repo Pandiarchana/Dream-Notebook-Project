@@ -85,6 +85,7 @@ $username = $_SESSION['username'] ?? 'User';
     <a href="write_entry.php" class="active">✍️ Write Entry</a>
     <a href="history.php">📖 History</a>
     <a href="charts.php">📊 Charts</a>
+    <a href="export.php">💾 Export & Backup</a>
     <a href="help.php">❓ Help</a>
   </nav>
   <footer>
