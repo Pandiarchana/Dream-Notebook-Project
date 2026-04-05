@@ -87,6 +87,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
     <a href="write_entry.php">✍️ Write Entry</a>
     <a href="history.php" class="active">📖 History</a>
     <a href="charts.php">📊 Charts</a>
+    <a href="export.php">💾 Export & Backup</a>
     <a href="help.php">❓ Help</a>
   </div>
   <footer>
