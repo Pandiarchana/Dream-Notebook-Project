@@ -171,6 +171,7 @@ $top_keywords = array_slice($freq, 0, 8, true);
     <a href="write_entry.php">✍️ Write Entry</a>
     <a href="history.php">📖 History</a>
     <a href="charts.php" class="active">📊 Charts</a>
+    <a href="export.php">💾 Export & Backup</a>
     <a href="help.php">❓ Help</a>
   </nav>
   <footer>
