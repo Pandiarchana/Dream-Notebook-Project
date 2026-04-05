@@ -188,7 +188,7 @@ $top_keywords = array_slice($freq, 0, 8, true);
   <div class="no-data">
     <i class="fa-solid fa-chart-bar" style="font-size:48px;display:block;margin-bottom:12px;opacity:.3"></i>
     <p>No entries yet. Write some diary entries to see your charts!</p>
-    <a href="write_entry.html" style="color:var(--blue);font-weight:600;">Write now →</a>
+    <a href="write_entry.php" style="color:var(--blue);font-weight:600;">Write now →</a>
   </div>
   <?php else: ?>
 
