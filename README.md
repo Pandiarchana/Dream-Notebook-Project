@@ -1,64 +1,27 @@
-# Dream-Notebook-Project
+# Dream Notebook Project
+## Introduction
+  Dream Notebook is a web-based application designed to help users record their daily dreams or diary entries in a simple and meaningful way. Unlike traditional diary systems, this application goes beyond just storing text by integrating artificial intelligence to analyse user entries. The system identifies emotions, keywords, and recurring themes, allowing users to better understand their thoughts and patterns over time. This project is developed as part of a university group assignment and follows an iterative software development approach.
 
-Dream Notebook is a web-based application that allows users to record dreams or diary entries
-and analyze them using AI. The system will eventually visualize emotions, keywords, and patterns
-using charts. This repository is developed as part of a university group project.
+# Project Objective
+  The main objective of the Dream Notebook project is to create a platform that not only allows users to write and store personal entries but also provides valuable insights through analysis. The system aims to improve self-awareness by transforming raw text into meaningful information. Additionally, the project focuses on building a scalable and structured web application while applying proper software engineering practices such as modular design and clean coding principles.
 
----
+# Iteration 1 – Core Diary Functionality
+  The first iteration of the project focuses on building a strong foundation by implementing the core diary functionality. During this stage, a console-based application was developed where users could create and view their diary or dream entries. These entries were stored using a simple file-based system instead of a database to keep the implementation straightforward. Basic error handling was included to ensure smooth execution. This iteration mainly focused on ensuring that the core functionality worked correctly before introducing more advanced features.
 
-## Workshop 3 – Iteration 1: Core Diary Functionality
+# Iteration 2 – Web System and Database Integration
+  In the second iteration, the project was expanded from a console application into a web-based system. A user authentication system was introduced, allowing users to register, log in, and log out securely. Passwords were protected using hashing techniques to ensure security. The system was connected to a MySQL database, replacing the earlier file-based storage. Users could now create and view their entries through a web interface, making the application more interactive and user-friendly. This iteration marked a significant improvement in both functionality and system structure.
 
-### Iteration Goal
-The goal of Iteration 1 is to establish a stable foundation for the Dream Notebook system by
-implementing basic diary functionality and setting up project structure and planning.
-Advanced features such as AI analysis, databases, and visualizations are intentionally excluded
-from this iteration.
+# Iteration 3 – AI Analysis and Data Visualisation
+   The third iteration enhances the system by integrating artificial intelligence and data visualization features. The application uses AI to analyse user-written entries and extract emotions, keywords, and themes. These insights are then presented visually through charts such as bar graphs and line graphs, helping users identify emotional trends and recurring patterns over time. This transforms the application from a simple diary into an intelligent system that provides meaningful feedback and analysis.
 
----
+# System Features
+  The Dream Notebook system allows users to record their dreams or daily experiences in a structured format, with each entry automatically saved along with the date and time. The system includes AI-based analysis that processes the text to identify important emotional and thematic elements. Additionally, users can view their past entries along with the generated insights, enabling them to track changes and patterns. The data visualization feature further enhances user understanding by presenting information in a clear and visual manner.
 
-### Implemented Features
-- Console-based diary application allowing users to:
-  - Create dream or diary entries
-  - View saved entries
-- Entries are stored using simple file-based storage
-- Basic error handling to ensure stable execution
+# Code Quality and Improvements
+  As part of the development process, a review of code quality was conducted using the principles of Single Responsibility Principle (SRP) and Don’t Repeat Yourself (DRY). It was observed that some files contained multiple responsibilities, such as handling validation, database operations, and output together. Improvements were planned to separate these concerns into reusable components. Repetition in session handling and validation logic was also identified, leading to the proposal of common reusable files such as authentication and validation modules. These improvements aim to make the system more maintainable and scalable.
 
----
+# Project Tracking and Management
+  The development process was managed using a GitHub Project Board, where tasks were organised into categories such as Todo, In Progress, and Done. This helped the team track progress effectively and ensure that all features were completed on time. Labels were also used to categorize tasks, improving clarity and workflow management. Regular updates were made to reflect the current state of the project.
 
-### Progress Summary
-- GitHub project board created and maintained for Iteration 1
-- User stories reviewed and organised into Todo, In Progress, and Done
-- Core diary functionality implemented and tested
-- Repository structure and documentation maintained
-
----
-
-### Current Focus
-Iteration 1 focuses on core diary functionality and clean project integration.
-AI-based analysis, databases, and data visualisation features are planned for later iterations.
-
-
-## Practical 5: Iteration 1 – Week 3 (Execution & Tracking)
-
-### A) SRP & DRY Review (Code Quality)
-
-**Files checked:** db_connect.php, register.php, login.php, logout.php, create_entry.php, view_entries.php
-
-#### SRP (Single Responsibility Principle) findings
-- db_connect.php: ✅ Single responsibility (DB connection + session_start)
-- register.php: Validation + hashing + DB insert + debug output in one file → Plan: remove debug output, keep register logic only
-- login.php: Validation + DB + session + output in one file → Plan: move reusable session check to a common file
-- create_entry.php: Authorization + insert query + output in one file → Plan: move authorization to reusable file
-- view_entries.php: DB query + UI output in one file → Plan: separate/reuse query logic later
-- logout.php: ✅ Single responsibility (logout only)
-
-#### DRY (Don’t Repeat Yourself) findings
-- ✅ DRY improvement done: Reused DB connection using `include 'db_connect.php'` across files
-- Repeated session check (Unauthorized) in protected pages → Plan: create `auth_check.php` and include it
-- Repeated POST request check in multiple files → Plan: reuse helper/function
-- Repeated validation patterns → Plan: reusable `validation.php`
-
-### B) Tracking (GitHub)
-- Project board used: Todo | In Progress | Done
-- Labels used on tasks: todo, in-progress, done
-- Cards/tasks were moved across columns to show progress
+# Conclusion
+   The Dream Notebook project successfully demonstrates the transformation of a basic diary system into a more advanced and intelligent application. Through multiple iterations, the system evolved from simple text storage to a fully functional web application with AI-powered analysis and visualization features. The project highlights the importance of structured development, continuous improvement, and the application of software engineering principles in building scalable systems.
